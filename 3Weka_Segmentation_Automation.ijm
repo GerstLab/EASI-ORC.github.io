@@ -1,9 +1,17 @@
 //Getting image directory from user and creating probability maps folder
-bioimg_folder = getDirectory("Input image directory:");
+Dialog.create("Important");
+Dialog.addMessage("Choose organelle images directory:");
+Dialog.show();
+bioimg_folder = getDirectory("Choose organelle images directory:");
 prob_map_folder = bioimg_folder + File.separator + "Probabiliy Maps";
+masks_folder = bioimg_folder + File.separator + "Organelle Masks";
 File.makeDirectory(prob_map_folder);
+File.makeDirectory(masks_folder);
 //Getting trained calassifier file location from user
-classifier_path =  File.openDialog("Input classifier location:");
+Dialog.create("Important");
+Dialog.addMessage("Choose classifier location:");
+Dialog.show();
+classifier_path =  File.openDialog("Choose classifier location:");
 
 //Starting time
 startTime = getTime();
@@ -30,16 +38,19 @@ for (file = 0; file < file_list.length; file++) {
 			setBatchMode(false);
 			open(seperated_folder + File.separator + plane_list[plane]);
 			run("Trainable Weka Segmentation");
-			while (!isOpen("Trainable Weka Segmentation v3.3.2")) {
+			weka_window = getInfo("window.title");
+			while (!startsWith(weka_window, "Trainable Weka Segmentation") || endsWith(weka_window, "%")) {
 				wait(100);
+				weka_window = getInfo("window.title");
 			}
-			selectWindow("Trainable Weka Segmentation v3.3.2");
+			selectWindow(weka_window);
 			call("trainableSegmentation.Weka_Segmentation.loadClassifier", classifier_path);
 			call("trainableSegmentation.Weka_Segmentation.getProbability");
 			while (!isOpen("Probability maps")) {
 				wait(100);
 			}
 			selectWindow("Probability maps");
+			wait(50);
 			run("Delete Slice");
 			saveAs("tiff", temp_maps_folder + File.separator + plane_list[plane]);
 			//Force garbage collection (important for large images)
@@ -56,6 +67,9 @@ for (file = 0; file < file_list.length; file++) {
 		// Save maps as stack
 		run("Images to Stack", "name=" + file_list[file] + "");
 		saveAs("tiff", prob_map_folder + File.separator + file_list[file] + "_map");
+		// Create binary images and save them
+		run("Make Binary", "background=Light calculate create");
+		saveAs("tiff", masks_folder + File.separator + file_list[file] + "_mask");
 		run("Close All");
 		//Delete uneeded files and folders
 		sepereated_list = getFileList(seperated_folder);
