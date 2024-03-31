@@ -1,5 +1,8 @@
 // Input source folder and create new fodler for converted files
-bioimg_folder = getDirectory("Select source directory");
+Dialog.create("Important");
+Dialog.addMessage("Choose images directory:");
+Dialog.show();
+bioimg_folder = getDirectory("Choose images directory");
 tiff_folder = bioimg_folder + "Tiff Images";
 image_format = getString("What is you file format?", "stk");
 File.makeDirectory(tiff_folder);
@@ -7,7 +10,7 @@ File.makeDirectory(tiff_folder);
 channel_num = getNumber("How many channels did you image?", 4);
 channels_list = newArray(channel_num);
 for (channel_index=0; channel_index < channel_num; channel_index++) {
-	channel_name = getString("Name of channel " + channel_index+1 + " (must be part of file name, case sensative):", "");
+	channel_name = getString("Name of channel " + channel_index + 1 + " (must be part of file name, case sensative):", "");
 	channel_folder = tiff_folder + File.separator + channel_name;
 	File.makeDirectory(channel_folder);
 	channels_list[channel_index] = channel_name;
