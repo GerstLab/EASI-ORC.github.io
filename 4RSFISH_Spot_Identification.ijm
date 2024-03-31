@@ -31,12 +31,6 @@ for (img = 0; img < smFISH_list.length; img++) {
 		run("Close All");
 		open(FISH_img_path);
 		title = getTitle();
-		//Select all identified cells and remove anything outside of them
-		roiManager("select", Array.getSequence(roiManager("count")));
-		roiManager("Combine");
-		wait(500);
-		run("Clear Results");
-		run("Clear Outside", "Stack");
 		//Calculate mean intensity of image, to use as threshold
 		roiManager("deselect");
 		close("ROI Manager");
@@ -50,10 +44,9 @@ for (img = 0; img < smFISH_list.length; img++) {
 			run("Measure");
 			sum_of_intesities += getResult("RawIntDen", slice - 1);
 		}
-		mean_intensity = (sum_of_intesities/nSlices)/(num_of_pix);
 		close("Results");
 		//Run RSFISH
-		run("RS-FISH", "image=[" + title + "] mode=Advanced anisotropy=1.0000 robust_fitting=RANSAC compute_min/max use_anisotropy spot_intensity=[Linear Interpolation] sigma=1.50000 threshold=" + RSFISH_Threshold + " support=3 min_inlier_ratio=0.10 max_error=1.50 spot_intensity_threshold=" + mean_intensity + " background=[No background subtraction] background_subtraction_max_error=0.05 background_subtraction_min_inlier_ratio=0.10 results_file=[] num_threads=16 block_size_x=128 block_size_y=128 block_size_z=16");
+		run("RS-FISH", "image=[" + title + "] mode=Advanced anisotropy=1.0000 robust_fitting=RANSAC compute_min/max use_anisotropy spot_intensity=[Linear Interpolation] sigma=1.50000 threshold=" + RSFISH_Threshold + " support=3 min_inlier_ratio=0.10 max_error=1.50 spot_intensity_threshold=0 background=[No background subtraction] background_subtraction_max_error=0.05 background_subtraction_min_inlier_ratio=0.10 results_file=[] num_threads=16 block_size_x=128 block_size_y=128 block_size_z=16");
 		//Save results table
 		selectWindow("smFISH localizations");
 		table_name = title + " smFISH localizations.csv";
@@ -72,5 +65,3 @@ for (img = 0; img < smFISH_list.length; img++) {
 		close("Log");
 	}
 }
-
-
