@@ -1,4 +1,7 @@
-cell_dir = getDirectory("Cell (brightfield) images directory:");
+Dialog.create("Important");
+Dialog.addMessage("Choose cell images directory:");
+Dialog.show();
+cell_dir = getDirectory("Choose cell images directory:");
 cell_list = getFileList(cell_dir);
 mask_directory = cell_dir + "Cells Masks";
 File.makeDirectory(mask_directory);
@@ -15,11 +18,12 @@ for (img = 0; img < cell_list.length; img++) {
 		for (slice = 0; slice < slices_num; slice++) {
 			selectWindow(cell_list[img]);
 			setSlice(slice + 1);
-			run("YeastMate", "scorethresholdsingle=0.9 scorethresholdmating=0.75 scorethresholdbudding=0.75 minnormalizationqualtile=0.015 maxnormalizationqualtile=0.985 addsinglerois=false addmatingrois=false addbuddingrois=false showsegmentation=true onlyselectedclassesinmask=false processeveryframe=false mintrackingoverlap=0.25 ipadress=localhost:11005");
+			run("YeastMate", "scorethresholdsingle=0.6 scorethresholdmating=0.75 scorethresholdbudding=0.75 minnormalizationqualtile=0.015 maxnormalizationqualtile=0.985 addsinglerois=false addmatingrois=false addbuddingrois=false showsegmentation=true onlyselectedclassesinmask=false processeveryframe=false mintrackingoverlap=0.25 ipadress=localhost:11005");
 		}
 		//Convert to mask image
 		run("Images to Stack", "  title=seg use");
 		stacked_mask = getTitle();
+		setThreshold(0, 1);
 		run("Convert to Mask", "method=MinError background=Dark calculate");
 		//Find slice with max amount of cells
 		max_cell_num = 0;
@@ -41,7 +45,6 @@ for (img = 0; img < cell_list.length; img++) {
 		setSlice(max_slice + 1);
 		run("Duplicate...", "title=[Max Slice]");
 		run("Convert to Mask");
-		if 
 		for (slice = 0; slice < (slices_num - 1); slice++) {
 			run("Duplicate...", " ");
 		}
