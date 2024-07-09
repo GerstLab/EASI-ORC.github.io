@@ -3,7 +3,11 @@
 </p>
 
 # EASI-ORC
-The EASI-ORC pipe-line can take you form raw images to analyzed data and graphs. It performs mRNA-ER colocalizaion analysis in a fast, reliable and consistent manner. All running on the Fiji platform, freely and openly.
+The EASI-ORC pipeline can take you from raw images to analyzed data and graphs. It performs mRNA-ER colocalizaion analysis in a fast, reliable and consistent manner. All running on the Fiji platform, freely and openly.
+
+Our user guide will take you step-by-step, explaining every module in detail.
+
+Designed to work with NO coding.
 <p align="center">
   <img src="assests/Diagram.png">
 </p>
@@ -16,8 +20,6 @@ The EASI-ORC pipe-line can take you form raw images to analyzed data and graphs.
 * Resolve mRNA-organelle colocalization
 * Filter, analyze and graph results.
 
-Our user guide will take you step-by-step, explaining every module in detail.
-No coding needed.
 
 EASI-ORC automates [YeastMate](https://yeastmate.readthedocs.io/en/latest/), [Trainable WEKA Segmentaion](https://github.com/fiji/Trainable_Segmentation?tab=readme-ov-file), and [RS-FISH](https://github.com/PreibischLab/RS-FISH) plugins.
 
