@@ -23,4 +23,4 @@ Designed to work with NO coding.
 
 EASI-ORC automates [YeastMate](https://yeastmate.readthedocs.io/en/latest/), [Trainable WEKA Segmentaion](https://github.com/fiji/Trainable_Segmentation?tab=readme-ov-file), and [RS-FISH](https://github.com/PreibischLab/RS-FISH) plugins.
 
-Logo art from [Flaticon](https://www.flaticon.com/).
+Logo art and additional graphics from [Flaticon](https://www.flaticon.com/).
