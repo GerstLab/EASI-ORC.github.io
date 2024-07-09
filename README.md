@@ -17,7 +17,7 @@ Designed to work with NO coding.
 * Segment organelles and other sub-cellular structures.
 * Sub-segment organlles using a proximity marker.
 * Identify FISH spots.
-* Resolve mRNA-organelle colocalization
+* Resolve mRNA-organelle colocalization.
 * Filter, analyze and graph results.
 
 
