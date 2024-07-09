@@ -1,1 +1,16 @@
-Analysis of single-molecule fluorescent in situ hybridization (smFISH) images is an arduous and time-consuming task that is important to perform accurately in order to translate image data into a quantifiable format. This task becomes increasingly more difficult with greater experimental scope and number of images. Although smFISH is the gold standard for RNA localization assays, there are limited freely available, user-friendly tools enabling the automation of smFISH image analysis. Moreover, tools that perform RNA colocalization analyses with sub-cellular structures, such as organelles, are largely unavailable. Available tools are expensive, may require a robust knowledge in programing, or offer limited features  , such as focusing on probe signal detection. We have developed a system that allows the automated analysis of multiple smFISH images in yeast cells: EASI-ORC (Efficient Analysis and Segmentation of smFISH Images for Organelle-RNA Colocalization). The EASI-ORC pipeline automates the segmentation of cells and sub-cellular structures, identifies bona fide smFISH signals, and measures the level of colocalization between an organelle and mRNA signals in a fast, accurate, and unbiased manner difficult to replicate by manual analysis. It also allows for the visualization of data filtering and outputs graphical representations of the colocalization data along with statistical analysis. EASI-ORC is based on existing ImageJ plugins and original scripts, thus, allowing free access and the relative ease of use. To circumvent any technical literacy issues, a step-by-step user guide has been created.  EASI-ORC offers a robust solution for smFISH image analysis for both new and experienced researchers - one that saves time and effort, as well as providing more consistent overall measurements of RNA-organelle colocalization in yeast.
+# EASI-ORC
+The EASI-ORC pipe-line can take you form raw images to analyzed data and graphs. It performs mRNA-ER colocalizaion analysis in a fast, reliable and consistent manner. All running on the Fiji platform, freely and openly.
+
+
+## EASI-ORC can:
+* Segment yeast cells.
+* Segment organelles and other sub-cellular structures.
+* Sub-segment organlles using a proximity marker.
+* Identify FISH spots.
+* Resolve mRNA-organelle colocalization
+* Filter, analyze and graph results.
+
+EAS-ORC automates YeastMate, Trainable WEKA Segmentaion, and RS-FISH plugins.
+
+Our user guide will take you step-by-step, explaining every module in detail.
+No coding needed.
