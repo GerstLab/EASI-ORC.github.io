@@ -16,7 +16,9 @@ The EASI-ORC pipe-line can take you form raw images to analyzed data and graphs.
 * Resolve mRNA-organelle colocalization
 * Filter, analyze and graph results.
 
-EASI-ORC automates YeastMate, Trainable WEKA Segmentaion, and RS-FISH plugins.
-
 Our user guide will take you step-by-step, explaining every module in detail.
 No coding needed.
+
+EASI-ORC automates [YeastMate](https://yeastmate.readthedocs.io/en/latest/), [Trainable WEKA Segmentaion](https://github.com/fiji/Trainable_Segmentation?tab=readme-ov-file), and [RS-FISH](https://github.com/PreibischLab/RS-FISH) plugins.
+
+Logo art from [Flaticon](https://www.flaticon.com/).
