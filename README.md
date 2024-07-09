@@ -1,6 +1,12 @@
+<p align="center">
+  <img src="assests/ORC.png" width="300">
+</p>
+
 # EASI-ORC
 The EASI-ORC pipe-line can take you form raw images to analyzed data and graphs. It performs mRNA-ER colocalizaion analysis in a fast, reliable and consistent manner. All running on the Fiji platform, freely and openly.
-
+<p align="center">
+  <img src="assests/Diagram.png">
+</p>
 
 ## EASI-ORC can:
 * Segment yeast cells.
