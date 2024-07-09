@@ -5,7 +5,7 @@
 # EASI-ORC
 The EASI-ORC pipeline can take you from raw images to analyzed data and graphs. It performs mRNA-ER colocalizaion analysis in a fast, reliable and consistent manner. All running on the Fiji platform, freely and openly.
 
-Our user guide will take you step-by-step, explaining every module in detail.
+Our [user guide](EASI ORC User Guide.pdf) will take you step-by-step, explaining every module in detail.
 
 Designed to work with NO coding.
 <p align="center">
