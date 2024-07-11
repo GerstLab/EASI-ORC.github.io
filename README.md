@@ -9,6 +9,8 @@ Our [user guide](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/c2f86e30
 [Download the scripts](https://github.com/ShaharGarin/EASI-ORC.github.io/raw/2d24362d16378646fb00c73121c894150db224df/EASI-ORC%20Scripts.7z) and use them on your images.
 
 Designed to work with NO coding.
+
+[An example image](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/247498dd5b2bfbeafa02566af1b0ed4fe2d05995/Example%20Image.7z) (with 4 channels) can be downloaded for testing and practice.
 <p align="center">
   <img src="assests/Diagram.png">
 </p>
