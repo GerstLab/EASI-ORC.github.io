@@ -26,6 +26,6 @@ Designed to work with NO coding.
 
 EASI-ORC automates [YeastMate](https://yeastmate.readthedocs.io/en/latest/), [Trainable WEKA Segmentaion](https://github.com/fiji/Trainable_Segmentation?tab=readme-ov-file), and [RS-FISH](https://github.com/PreibischLab/RS-FISH) plugins.
 
-You must install their plugins and the standalone yeastmate application to run EASI-ORC.
+You must install their plugins and the standalone yeastmate application to run EASI-ORC. See each plugin's page for instructions on istallation, if you're having issues.
 
 Logo art and additional graphics from [Flaticon](https://www.flaticon.com/).
