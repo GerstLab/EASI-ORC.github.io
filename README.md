@@ -28,4 +28,6 @@ EASI-ORC automates [YeastMate](https://yeastmate.readthedocs.io/en/latest/), [Tr
 
 You must install their plugins and the standalone yeastmate application to run EASI-ORC. See each plugin's page for instructions on istallation, if you're having issues.
 
+If you use EASI-ORC in your research, please make sure to also reference the original works done to develop these plugins.
+
 Logo art and additional graphics from [Flaticon](https://www.flaticon.com/).
