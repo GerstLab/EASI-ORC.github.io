@@ -8,9 +8,10 @@ Our [user guide](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/c2f86e30
 
 [Download the scripts](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/73cd76d4703f90b22be32aa0b13b25d66424044f/code/EASI-ORC%20Scripts.7z) and use them on your images.
 
+
 Designed to work with NO coding.
 
-[An example image](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/247498dd5b2bfbeafa02566af1b0ed4fe2d05995/Example%20Image.7z) (with 4 channels) can be downloaded for testing and practice.
+[An example image](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/247498dd5b2bfbeafa02566af1b0ed4fe2d05995/Example%20Image.7z) (with 4 channels) can be downloaded for testing and practice (with marked ER and SUC2 smFISH signals), [as well as example segmentation calssifiers](https://github.com/ShaharGarin/EASI-ORC.github.io/blob/86da0e13a4c2d5a6897776d4283a053f489cca6d/classifiers/classifiers.7z).
 <p align="center">
   <img src="assests/Diagram.png">
 </p>
