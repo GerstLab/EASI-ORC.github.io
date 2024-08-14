@@ -3,6 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from ipywidgets import widgets
+import os
 
 
 # variables
@@ -74,13 +75,6 @@ def rna_df_function(idx, df):
         return rna_df
     
 
-def y_lim_for_hist(arr, bins):
-    counts, _ = np.histogram(arr, bins=bins)
-    max_bin_index = np.argmax(counts)
-    most_frequent_bin_count = counts[max_bin_index]
-    return most_frequent_bin_count
-
-
 def rna_to_cell_df(df):
     copy_df = df.copy() 
     copy_df['full_id'] = copy_df['treatment'] + '_' + copy_df['cell_id'].astype(str) 
@@ -115,20 +109,22 @@ def filtered_mean_coverages(row, coverage_threshold, cols):
 
 
 def on_button_clicked(b):
-  out = widgets.Output()
-  fig.savefig(plt_save_name, bbox_inches = 'tight', dpi = 1000)
-  with out:
-    out.clear_output()
+    out = widgets.Output()
+    os.makedirs(save_path, exist_ok=True)
+    fig.savefig(plt_save_name, bbox_inches = 'tight', dpi = 1000)
+    with out:
+        out.clear_output()
 
 
-def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, filter=True, intensity_threshold=None, coverage_threshold=None, rna_num_threshold=None):
-    global fig, plt_save_name, dpi, save_btn
+def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, filter=True, intensity_threshold=None, coverage_threshold=None, rna_num_threshold=None, path=None):
+    global fig, plt_save_name, dpi, save_btn, save_path
     fig = plt.gcf()
     dpi = DPI
+    save_path = os.path.join(path, 'Figures')
     save_btn.on_click(on_button_clicked)
     if filter:
         global threshold
         threshold = [min, max]
-        plt_save_name = rf"{fig_name} ({round(min,2)} to {round(max,2)}).{str(file_type)}"
+        plt_save_name = rf"{save_path}{fig_name} ({round(min,2)} to {round(max,2)}).{str(file_type)}"
     else:
-        plt_save_name = rf'{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}' 
+        plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}' 
