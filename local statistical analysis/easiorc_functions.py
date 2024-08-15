@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from ipywidgets import widgets
+from ipywidgets import interactive, IntSlider, FloatSlider, widgets
 import os
 
 
@@ -128,3 +128,15 @@ def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, f
         plt_save_name = rf"{save_path}{fig_name} ({round(min,2)} to {round(max,2)}).{str(file_type)}"
     else:
         plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}' 
+
+
+def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), slider_value=(1,100), step=None, bins=None):
+    if type=='int':
+        slider_min = IntSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
+        slider_max = IntSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
+    else: 
+        slider_min = FloatSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
+        slider_max = FloatSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
+    interactive_plot = interactive(plot_function, _min_=slider_min, _max_=slider_max, file_type=file_type, axis_ticks=axis_ticks, 
+                                                     DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
+    return widgets.VBox([interactive_plot, save_btn])
