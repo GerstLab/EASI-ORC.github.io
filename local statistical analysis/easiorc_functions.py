@@ -114,7 +114,6 @@ def on_button_clicked(b):
         out.clear_output()  # Clear previous output
         os.makedirs(save_path, exist_ok=True)  # Ensure the save path exists
         fig.savefig(plt_save_name, bbox_inches='tight', dpi=dpi)
-        print(f"Figure saved as {plt_save_name}")  # Notify that the file has been saved
 
 
 def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, filter=True, intensity_threshold=None, coverage_threshold=None, rna_num_threshold=None, path=None):
@@ -143,38 +142,3 @@ def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), sl
                                            DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
     
     return widgets.VBox([interactive_plot, save_btn, out])
-
-
-
-# def on_button_clicked(b):
-#     out = widgets.Output()
-#     os.makedirs(save_path, exist_ok=True)
-#     fig.savefig(plt_save_name, bbox_inches='tight', dpi=dpi)
-#     with out:
-#         out.clear_output()
-
-
-# def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, filter=True, intensity_threshold=None, coverage_threshold=None, rna_num_threshold=None, path=None):
-#     global fig, plt_save_name, dpi, save_btn, save_path
-#     fig = plt.gcf()
-#     dpi = DPI
-#     save_path = os.path.join(path, 'Figures')
-#     save_btn.on_click(on_button_clicked)
-#     if filter:
-#         global threshold
-#         threshold = [min, max]
-#         plt_save_name = rf"{save_path}{fig_name} ({round(min,2)} to {round(max,2)}).{str(file_type)}"
-#     else:
-#         plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}' 
-
-
-# def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), slider_value=(1,100), step=None, bins=None, save_btn=save_btn):
-#     if type=='int':
-#         slider_min = IntSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
-#         slider_max = IntSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
-#     else: 
-#         slider_min = FloatSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
-#         slider_max = FloatSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
-#     interactive_plot = interactive(plot_function, _min_=slider_min, _max_=slider_max, file_type=file_type, axis_ticks=axis_ticks, 
-#                                                      DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
-#     return widgets.VBox([interactive_plot, save_btn])
