@@ -9,6 +9,7 @@ import os
 # variables
 save_btn = widgets.Button(description='Save Figure')
 save_btn.style.button_color = 'GhostWhite'
+out = widgets.Output()
 graph_styles = ['default', '_mpl-gallery', '_mpl-gallery-nogrid', 'bmh', 'ggplot', 'seaborn-v0_8', 'seaborn-v0_8-bright', 'seaborn-v0_8-colorblind', 'seaborn-v0_8-dark', 'seaborn-v0_8-dark-palette', 'seaborn-v0_8-darkgrid', 'seaborn-v0_8-deep', 'seaborn-v0_8-muted', 'seaborn-v0_8-notebook', 'seaborn-v0_8-paper', 'seaborn-v0_8-pastel', 'seaborn-v0_8-poster', 'seaborn-v0_8-talk', 'seaborn-v0_8-ticks', 'seaborn-v0_8-white', 'seaborn-v0_8-whitegrid', 'tableau-colorblind10']
 file_type=['png', 'jpg', 'tiff', 'pdf', 'ps', 'eps', 'svg']
 axis_ticks=list(range(10,20))
@@ -109,34 +110,71 @@ def filtered_mean_coverages(row, coverage_threshold, cols):
 
 
 def on_button_clicked(b):
-    out = widgets.Output()
-    os.makedirs(save_path, exist_ok=True)
-    fig.savefig(plt_save_name, bbox_inches = 'tight', dpi = 1000)
     with out:
-        out.clear_output()
+        out.clear_output()  # Clear previous output
+        os.makedirs(save_path, exist_ok=True)  # Ensure the save path exists
+        fig.savefig(plt_save_name, bbox_inches='tight', dpi=dpi)
+        print(f"Figure saved as {plt_save_name}")  # Notify that the file has been saved
 
 
 def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, filter=True, intensity_threshold=None, coverage_threshold=None, rna_num_threshold=None, path=None):
     global fig, plt_save_name, dpi, save_btn, save_path
     fig = plt.gcf()
     dpi = DPI
-    save_path = os.path.join(path, 'Figures')
+    save_path = path + '/Figures/'
     save_btn.on_click(on_button_clicked)
     if filter:
         global threshold
         threshold = [min, max]
         plt_save_name = rf"{save_path}{fig_name} ({round(min,2)} to {round(max,2)}).{str(file_type)}"
     else:
-        plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}' 
+        plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}'
 
 
 def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), slider_value=(1,100), step=None, bins=None):
     if type=='int':
-        slider_min = IntSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
-        slider_max = IntSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
+        slider_min = widgets.IntSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
+        slider_max = widgets.IntSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
     else: 
-        slider_min = FloatSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
-        slider_max = FloatSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
-    interactive_plot = interactive(plot_function, _min_=slider_min, _max_=slider_max, file_type=file_type, axis_ticks=axis_ticks, 
-                                                     DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
-    return widgets.VBox([interactive_plot, save_btn])
+        slider_min = widgets.FloatSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
+        slider_max = widgets.FloatSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
+    
+    interactive_plot = widgets.interactive(plot_function, _min_=slider_min, _max_=slider_max, file_type=file_type, axis_ticks=axis_ticks, 
+                                           DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
+    
+    return widgets.VBox([interactive_plot, save_btn, out])
+
+
+
+# def on_button_clicked(b):
+#     out = widgets.Output()
+#     os.makedirs(save_path, exist_ok=True)
+#     fig.savefig(plt_save_name, bbox_inches='tight', dpi=dpi)
+#     with out:
+#         out.clear_output()
+
+
+# def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, filter=True, intensity_threshold=None, coverage_threshold=None, rna_num_threshold=None, path=None):
+#     global fig, plt_save_name, dpi, save_btn, save_path
+#     fig = plt.gcf()
+#     dpi = DPI
+#     save_path = os.path.join(path, 'Figures')
+#     save_btn.on_click(on_button_clicked)
+#     if filter:
+#         global threshold
+#         threshold = [min, max]
+#         plt_save_name = rf"{save_path}{fig_name} ({round(min,2)} to {round(max,2)}).{str(file_type)}"
+#     else:
+#         plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}' 
+
+
+# def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), slider_value=(1,100), step=None, bins=None, save_btn=save_btn):
+#     if type=='int':
+#         slider_min = IntSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
+#         slider_max = IntSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
+#     else: 
+#         slider_min = FloatSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
+#         slider_max = FloatSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
+#     interactive_plot = interactive(plot_function, _min_=slider_min, _max_=slider_max, file_type=file_type, axis_ticks=axis_ticks, 
+#                                                      DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
+#     return widgets.VBox([interactive_plot, save_btn])
