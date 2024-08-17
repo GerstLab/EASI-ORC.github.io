@@ -18,7 +18,7 @@ main_title=list(range(8,33))
 axis_labels=list(range(8,33))
 legend=list(range(8,33))
 plot_style=graph_styles
-bins=(1, 200, 1)
+bins=(1, 1000, 1)
 
 
 # functions
