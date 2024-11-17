@@ -18,7 +18,7 @@ main_title=list(range(8,33))
 axis_labels=list(range(8,33))
 legend=list(range(8,33))
 plot_style=graph_styles
-bins=(1, 1000, 1)
+
 
 
 # functions
@@ -100,7 +100,8 @@ def plot_assist(axis_ticks, axis_labels, legend, main_title, x_axis_label, y_axi
     plt.yticks(fontsize=axis_ticks)
     plt.xlabel(x_axis_label, fontsize=axis_labels)
     plt.ylabel(y_axis_label, fontsize=axis_labels)
-    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), fontsize =legend)
+    if legend != None:
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), fontsize =legend)
     plt.suptitle(main_title_label, fontsize=main_title, y = 1.05)
 
 
@@ -130,7 +131,7 @@ def global_assist(min=None, max=None, DPI=None, fig_name=None, file_type=None, f
         plt_save_name = rf'{save_path}{fig_name}, intensity {intensity_threshold}, coverage {coverage_threshold}, rna_num {rna_num_threshold}.{str(file_type)}'
 
 
-def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), slider_value=(1,100), step=None, bins=None):
+def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), slider_value=(1,100), step=None):
     if type=='int':
         slider_min = widgets.IntSlider(min=min[0], max=min[1], step=step, value=slider_value[0])
         slider_max = widgets.IntSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
@@ -139,6 +140,23 @@ def show_interactive(plot_function, type='float', min=(0, 100), max=(0, 100), sl
         slider_max = widgets.FloatSlider(min=max[0], max=max[1], step=step, value=slider_value[1])
     
     interactive_plot = widgets.interactive(plot_function, _min_=slider_min, _max_=slider_max, file_type=file_type, axis_ticks=axis_ticks, 
-                                           DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles, bins=bins)
+                                           DPI=DPI, main_title=main_title, axis_labels=axis_labels, legend=legend, plot_style=graph_styles)
     
     return widgets.VBox([interactive_plot, save_btn, out])
+
+
+def generate_synthetic_population(row, row_name, reps):
+    n = int(row['rna_count'])  
+    x = row[row_name]  
+    if n*x > 0:
+        p_true = x / 100  
+        p_false = 1 - p_true
+        all_draws = []
+
+        for _ in range(reps):
+            draws = np.random.choice([True, False], size=n, p=[p_true, p_false])
+            all_draws.append(np.sum(draws)/n)
+
+        return np.mean(all_draws)
+    else:
+        return 0.0
