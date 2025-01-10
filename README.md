@@ -33,3 +33,19 @@ You must install their plugins and the standalone yeastmate application to run E
 If you use EASI-ORC in your research, please make sure to also reference the original works done to develop these plugins.
 
 Logo art and additional graphics from [Flaticon](https://www.flaticon.com/).
+
+## Citation
+Please note that EASI-ORC is based on a publication. If you use it successfully for your research please be so kind to cite our work:
+* Garin, S. et al EASI-ORC: A Pipeline for the Efficient Analysis and Segmentation of smFISH Images for Organelle-RNA Colocalization Measurements in Yeast
+bioRxiv 2024.10.04.616601 (2024)
+
+Please make sure to also cite the following works, used in this pipeline:
+
+YeastMate:
+* Bunk, D. et al. YeastMate: neural network-assisted segmentation of mating and budding events in Saccharomyces cerevisiae. Bioinformatics 38, 2667–2669 (2022).
+
+Trainable WEKA Segmenentation:
+* 	Arganda-Carreras, I. et al. Trainable Weka Segmentation: a machine learning tool for microscopy pixel classification. Bioinformatics 33, 2424–2426 (2017).
+
+RSFISH:
+* Bahry, E. et al. RS-FISH: precise, interactive, fast, and scalable FISH spot detection. Nat. Methods 19, 1563–1567 (2022).
