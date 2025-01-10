@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/582952010.svg)](https://doi.org/10.5281/zenodo.14622307)
 # EASI-ORC
 <p align="center">
   <img src="assests/ORC.png" width="300">
