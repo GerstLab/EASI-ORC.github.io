@@ -49,3 +49,6 @@ Trainable WEKA Segmenentation:
 
 RSFISH:
 * Bahry, E. et al. RS-FISH: precise, interactive, fast, and scalable FISH spot detection. Nat. Methods 19, 1563–1567 (2022).
+
+
+Orc icon made by Darius Dan from www.flaticon.com. Graphs and table icons made by Freepik from www.flaticon.com.Graph icons made by Pericon from www.flaticon.com. 
