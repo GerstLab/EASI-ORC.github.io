@@ -51,7 +51,6 @@ Dialog.addMessage("Please input the directory you wish results tables will be sa
 Dialog.show();
 results_path = getDirectory("Results Tables Location:");
 
-
 for (img = 0; img < cell_list.length; img++) {
 	//Make sure file is not a folder (won't go into subfolders)
 	cell_img_path = cell_dir + cell_list[img];

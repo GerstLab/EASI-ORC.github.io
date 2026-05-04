@@ -15,6 +15,8 @@ for (img = 0; img < smFISH_list.length; img++) {
 	if (!File.isDirectory(FISH_img_path)) {
 		open(FISH_img_path);
 		title = getTitle();
+		//Clean up single pixel noise
+		run("Remove Outliers...", "radius=1 threshold=50 which=Bright stack");
 		//Run RSFISH
 		run("RS-FISH", "image=[" + title + "] mode=Advanced anisotropy=1.0000 robust_fitting=RANSAC compute_min/max use_anisotropy spot_intensity=[Linear Interpolation] sigma=1.50000 threshold=" + RSFISH_Threshold + " support=3 min_inlier_ratio=0.10 max_error=1.50 spot_intensity_threshold=0 background=[No background subtraction] background_subtraction_max_error=0.05 background_subtraction_min_inlier_ratio=0.10 results_file=[] num_threads=16 block_size_x=128 block_size_y=128 block_size_z=16");
 		//Save results table

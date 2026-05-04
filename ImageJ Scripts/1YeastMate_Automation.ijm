@@ -24,7 +24,7 @@ for (img = 0; img < cell_list.length; img++) {
 		run("Images to Stack", "  title=seg use");
 		stacked_mask = getTitle();
 		setThreshold(0, 1);
-		run("Convert to Mask", "method=MinError background=Dark calculate");
+		run("Convert to Mask", "method=Default background=Dark black");
 		//Find slice with max amount of cells
 		max_cell_num = 0;
 		max_slice = 0;
@@ -44,7 +44,7 @@ for (img = 0; img < cell_list.length; img++) {
 		selectWindow(stacked_mask);
 		setSlice(max_slice + 1);
 		run("Duplicate...", "title=[Max Slice]");
-		run("Convert to Mask");
+		//run("Convert to Mask");
 		for (slice = 0; slice < (slices_num - 1); slice++) {
 			run("Duplicate...", " ");
 		}
