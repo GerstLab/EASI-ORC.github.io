@@ -44,7 +44,8 @@ for (img = 0; img < cell_list.length; img++) {
 		selectWindow(stacked_mask);
 		setSlice(max_slice + 1);
 		run("Duplicate...", "title=[Max Slice]");
-		//run("Convert to Mask");
+		run("Convert to Mask");
+		run("Invert LUTs");
 		for (slice = 0; slice < (slices_num - 1); slice++) {
 			run("Duplicate...", " ");
 		}
